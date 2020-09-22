@@ -3,11 +3,11 @@ import socketserver
 host = "localhost"
 port = 3333
 
-global httpd
 
 def HTTPserver(host, port):
     try:
         reqHandler = http.server.SimpleHTTPRequestHandler
+        global httpd
         httpd = socketserver.TCPServer((host, port), reqHandler)
         # print("serving at port", port)
 
@@ -16,6 +16,6 @@ def HTTPserver(host, port):
         if httpd is not None:
             httpd.shutdown()
             httpd.server_close()
-        print('error: ', error)
+        # print('error: ', error)
 
 HTTPserver(host, port)
